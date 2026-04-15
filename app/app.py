@@ -5,4 +5,4 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return "Hi hi! Lets experiment with making/using a DevOps pipeline!"
+    return "Hi hi! Lets experiment with making a link shortener + using devops pipeline"
