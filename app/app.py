@@ -35,7 +35,7 @@ def shorten():
     
     code = generate_code() #call func to gen short code
     url_map[code] = long_url #store short code & long url in dic
-    return jsonify({'short_url': f'http://localhost:5000/{code}'}) #route doesn't exist yet but will be created to handle redirection
+    return jsonify({'short_url': f'http://localhost:5000/{code}'})
 
 @app.route('/<code>')
 def redirect_long(code):
@@ -48,6 +48,3 @@ def redirect_long(code):
 def links():
     return jsonify(url_map)
 
-
-if __name__ == '__main__':
-    app.run(debug=True)
