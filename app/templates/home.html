@@ -11,12 +11,30 @@
 <body>
     <h1>Welcome to SmartShort!</h1>
     <p>This is the home page! You can use this service to shorten your URLs.</p>
-    <p>To shorten a URL, kajsfdkvvnkajvdsjavndja</p>
-    <pre>
-{
-    "long_url": "https://www.example.com/your-long-url"
-}
-    </pre>
-    <p>To see all shortened links, eskvsfjdvsfdvopfs dfsijv s</p>
+    <p>To shorten a URL, paste one here: </p>
+
+    <input type="text" id="urlInput" placeholder="https://example.com/blah/blah/blahhh" style="width: 400px;">
+    <button onclick="shortenUrl()">Shorten</button>
+    <p id="result"></p>
+
+    <script>
+        async function shortenUrl() {
+            const url = document.getElementById('urlInput').value;
+            const response = await fetch('/shorten', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({url: url})
+            });
+            const data = await response.json();
+            if (data.short_url) {
+                document.getElementById('result').innerHTML = 
+                    `Shortened: <a href="${data.short_url}">${data.short_url}</a>`;
+            } else {
+                document.getElementById('result').textContent = 'Error: ' + data.error;
+            }
+        }
+    </script>
+    
+    <p>To see all shortened links, visit /links</p>
 </body>
 </html>
